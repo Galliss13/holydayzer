@@ -22,6 +22,12 @@ app.get('/holidays', (req, res) => {
     res.send(holidays)
 })
 
+app.get('/holidays/:month', (req, res) => {
+    const month = req.params.month
+    const holidaysMonth = holidays.filter(day => day.date.split('/')[0] === month)
+    res.send(holidaysMonth)
+})
+
 app.get('/is-today-holiday', (req,res) => {
     const today = new Date()
     const isHoliday = holidays.find((day) => day.date === today.toLocaleDateString("en-us"))
